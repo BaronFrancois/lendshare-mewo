@@ -1,0 +1,9 @@
+projet_mairie_backup/
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.code-workspace

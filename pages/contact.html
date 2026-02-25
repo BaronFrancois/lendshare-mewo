@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Lend&Share</title>
+    <link rel="stylesheet" href="../assets/common.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .page-contact {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: calc(100vh - 200px);
+        }
+
+        .page-contact h1 {
+            color: #3f3a55;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: none;
+        }
+
+        .page-contact .intro {
+            text-align: center;
+            color: #666;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .contact-box {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-box h2 {
+            color: #2d2840;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid #66b3ff;
+            padding-bottom: 15px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 179, 255, 0.2);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #66b3ff 0%, #3f3a55 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-content h3 {
+            color: #3f3a55;
+            font-size: 1.2rem;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+        }
+
+        .info-content p {
+            color: #4a4a4a;
+            margin: 0;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .info-content a {
+            color: #66b3ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .info-content a:hover {
+            color: #3f3a55;
+            text-decoration: underline;
+        }
+
+        .horaires {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .horaires h3 {
+            color: #3f3a55;
+            font-size: 1.3rem;
+            margin: 0 0 20px 0;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .horaires table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .horaires td {
+            padding: 12px 10px;
+            color: #4a4a4a;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .horaires tr:last-child td {
+            border-bottom: none;
+        }
+
+        .horaires td:first-child {
+            font-weight: 600;
+            color: #2d2840;
+            width: 40%;
+        }
+
+        @media (max-width: 768px) {
+            .page-contact {
+                padding: 30px 15px;
+            }
+
+            .page-contact h1 {
+                font-size: 2rem;
+            }
+
+            .page-contact .intro {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+
+            .contact-box {
+                padding: 25px 20px;
+            }
+
+            .contact-box h2 {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+            }
+
+            .info-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .info-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+
+            .info-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .info-content p {
+                font-size: 0.95rem;
+            }
+
+            .horaires {
+                padding: 20px 15px;
+            }
+
+            .horaires h3 {
+                font-size: 1.2rem;
+            }
+
+            .horaires td {
+                padding: 10px 5px;
+                font-size: 0.9rem;
+            }
+
+            .horaires td:first-child {
+                width: 45%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-contact h1 {
+                font-size: 1.7rem;
+            }
+
+            .contact-box {
+                padding: 20px 15px;
+            }
+
+            .info-item {
+                padding: 12px;
+            }
+
+            .horaires table {
+                font-size: 0.85rem;
+            }
+
+            .horaires td {
+                padding: 8px 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Le contenu sera généré par header.js -->
+    </header>
+
+    <main class="page-contact">
+        <h1>Contactez-nous</h1>
+        <p class="intro">
+            Une question sur nos services ? Besoin d'aide pour votre réservation ?<br>
+            Notre équipe est à votre disposition pour vous accompagner.
+        </p>
+
+        <div class="contact-box">
+            <h2>Nos coordonnées</h2>
+
+            <div class="contact-info">
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="info-content">
+                        <h3>Adresse</h3>
+                        <p>
+                            Commune de Pont-à-Mousson<br>
+                            19 place Duroc<br>
+                            54700 Pont-à-Mousson - FRANCE
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-phone"></i></div>
+                    <div class="info-content">
+                        <h3>Téléphone</h3>
+                        <p>
+                            <a href="tel:+33383811068">+33 3 83 81 10 68</a><br>
+                            Du lundi au vendredi de 9h à 17h
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="horaires">
+                <h3>Horaires d'ouverture</h3>
+                <table>
+                    <tr>
+                        <td>Lundi - Mardi</td>
+                        <td>9h00 - 12h30 / 14h00 - 17h00</td>
+                    </tr>
+                    <tr>
+                        <td>Mercredi</td>
+                        <td>9h00 - 12h30</td>
+                    </tr>
+                    <tr>
+                        <td>Jeudi - Vendredi</td>
+                        <td>9h00 - 12h30 / 14h00 - 17h00</td>
+                    </tr>
+                    <tr>
+                        <td>Samedi - Dimanche</td>
+                        <td>Fermé</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <section id="footer-container">
+            <section class="footer-section">
+                <h3><a href="mentions-legales.html" style="color: white; text-decoration: none;">Mentions Légales</a></h3>
+            </section>
+            <section class="footer-section footer-logo">
+                <img src="../assets/footer_logo.png" alt="Logo Lend&Share" />
+            </section>
+            <section class="footer-section">
+                <h3><a href="contact.html" style="color: white; text-decoration: none;">Contact</a></h3>
+            </section>
+        </section>
+    </footer>
+
+    <script src="../assets/js/header.js"></script>
+</body>
+</html>

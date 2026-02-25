@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Compte - Lend&Share</title>
+    <link rel="stylesheet" href="../assets/common.css">
+    <link rel="stylesheet" href="../assets/produits.css">
+    <link rel="stylesheet" href="../assets/mon_compte.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+<body>
+    <header></header>
+
+    <main id="mon-compte">
+        <h1>Mon Compte</h1>
+        
+        <div id="zone-chargement" class="zone-chargement">
+            <p>Chargement...</p>
+        </div>
+
+        <div id="vue-administrateur" class="vue-compte" style="display: none;">
+            <section class="section-compte">
+                <h2>Gestion des Réservations</h2>
+                <div id="liste-reservations-admin" class="liste-reservations"></div>
+            </section>
+        </div>
+
+        <div id="vue-utilisateur" class="vue-compte" style="display: none;">
+            <section class="section-compte">
+                <h2>Mes Informations</h2>
+                <div id="infos-utilisateur" class="infos-utilisateur"></div>
+            </section>
+
+            <section class="section-compte">
+                <h2>Historique de mes Réservations</h2>
+                <div id="liste-reservations-utilisateur" class="liste-reservations"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <section id="footer-container">
+            <section class="footer-section">
+                <h3><a href="mentions-legales.html" style="color: white; text-decoration: none;">Mentions Légales</a></h3>
+            </section>
+            <section class="footer-section footer-logo">
+                <img src="../assets/footer_logo.png" alt="Logo Lend&Share" />
+            </section>
+            <section class="footer-section">
+                <h3><a href="contact.html" style="color: white; text-decoration: none;">Contact</a></h3>
+            </section>
+        </section>
+    </footer>
+
+    <script src="../assets/js/header.js"></script>
+    <script src="../assets/js/mon_compte.js"></script>
+</body>
+</html>

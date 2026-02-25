@@ -1,0 +1,729 @@
+
+* { box-sizing: border-box; }
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+body {
+    background: linear-gradient(#f7f4f747, #b7bbe247);
+    font-family: roboto;
+    padding-top: 70px;
+}
+
+header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    gap: 20px;
+    padding: 0.7rem 2rem;
+    background: linear-gradient(to bottom right, #ffffff97, #ffffffb5);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: all 0.3s ease;
+    justify-items: center;
+}
+
+header.header-scrolled {
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 10px 15px;
+    border-radius: 15px;
+}
+
+header img { 
+    height: 40px;
+    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.474)) drop-shadow(0 0 1px rgba(255, 255, 255, 0.474)) drop-shadow(0 0 1px rgba(255, 255, 255, 0.474));
+}
+
+header nav a,
+header #boutons-auth a,
+header nav button,
+header #boutons-auth button,
+header button.bouton-connexion {
+    padding: 8px 16px;
+    background: #ffffff2e;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 300;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border-top: solid 1px #ffffffb8;
+    border-bottom: solid 1px #00000033;
+    transform: scale(1.1);
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    border-top: solid 1px #ffffffb8;
+    border-bottom: solid 1px #00000033;
+    box-shadow: 0 0 9px #00000021;
+    margin: 0;
+    text-shadow: 0px 0px 10px #ffffff66, 0 1px 10px #ffffff73, 1px 0 10px #ffffff6b, 0 -1px 10px #ffffff5e;
+}
+a.bouton-catalogue {
+    margin: 0 0.4rem;
+}
+
+a.bouton-secondaire {
+    translate: -1rem;
+}
+
+header nav a:hover,
+header #boutons-auth a:hover,
+header nav button:hover,
+header #boutons-auth button:hover,
+header button.bouton-connexion:hover {
+    transform: scale(1.2);
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+header #logo-div a {
+    padding: 0;
+    background: transparent;
+    border: none;
+    transform: none;
+    transition: none;
+}
+
+header #logo-div a:hover {
+    background: transparent;
+    transform: none;
+    box-shadow: none;
+}
+
+div#logo-div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+div#logo-div a {
+    display: flex;
+    align-items: center;
+}
+
+nav#nav-principale {
+    display: flex;
+    justify-content: center;
+}
+
+/* Textes responsive pour bouton catalogue */
+.texte-complet {
+    display: inline;
+}
+
+.texte-court {
+    display: none;
+}
+
+/* Menu compte mobile */
+.menu-compte-mobile {
+    display: none;
+    position: relative;
+}
+
+.bouton-compte-mobile {
+    background: #ffffff2e;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    transition: all 0.3s ease;
+    border-top: solid 1px #ffffffb8;
+    border-bottom: solid 1px #00000033;
+    box-shadow: 0 0 9px #00000021;
+    text-shadow: 0px 0px 10px #ffffff66, 0 1px 10px #ffffff73, 1px 0 10px #ffffff6b, 0 -1px 10px #ffffff5e;
+}
+
+.bouton-compte-mobile:hover {
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.bouton-compte-mobile svg {
+    display: block;
+}
+
+.menu-deroulant-mobile {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    min-width: 180px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.menu-deroulant-mobile.ouvert {
+    display: block;
+}
+
+.menu-deroulant-mobile a,
+.menu-deroulant-mobile button {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    text-align: left;
+    color: #3f3a55;
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.95rem;
+    transition: background 0.2s ease;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+.menu-deroulant-mobile a:hover,
+.menu-deroulant-mobile button:hover {
+    background: #f5f5f5;
+    transform: none;
+}
+
+.menu-deroulant-mobile button {
+    border-top: 1px solid #e0e0e0;
+    color: #dc3545;
+    font-weight: 500;
+}
+
+@media (max-width: 900px) {
+    /* Masquer le texte Lend&Share sur mobile */
+    .logo-text {
+        display: none;
+    }
+
+    /* Remplacer "Accès au Catalogue Complet" par "Catalogue" */
+    .texte-complet {
+        display: none;
+    }
+
+    .texte-court {
+        display: inline;
+    }
+
+    /* Afficher le menu compte mobile et masquer les boutons desktop */
+    .menu-compte-mobile {
+        display: block;
+    }
+
+    .bouton-desktop {
+        display: none !important;
+    }
+}
+
+/* Responsive spécifique pour page inscription en mobile */
+@media (max-width: 415px) {
+    body.page-inscription nav#nav-principale {
+        display: none;
+    }
+}
+
+/* Réduire le padding du body pour très petites résolutions */
+@media (max-width: 400px) {
+    body {
+        padding-top: 0;
+    }
+}
+
+.slider {
+    position: relative;
+    margin: 16px 8px;
+    padding: 8px 0; 
+}
+
+.slider-track {
+    display: flex;
+    gap: 23px;
+    padding: 6px 42px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.slider-track::-webkit-scrollbar { height: 8px; }
+.slider-track::-webkit-scrollbar-thumb { background: #c8c8c8; border-radius: 999px; }
+.slider-track { scrollbar-width: thin; }
+
+.categorie {
+    flex: 0 0 auto;
+    border-radius: 12px;
+    background: #fff;
+    scroll-snap-align: start;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    padding: 10px;
+    box-shadow: 1px 1px 5px #0000004d;
+}
+
+img {
+    display: block;
+    max-width: inherit;
+    height: -webkit-fill-available;
+}
+
+.categorie .categorie-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  
+    border-radius: 8px;    
+}
+
+.categorie h4 {
+    position: absolute;
+    top: 10px;
+    left: 74px;
+    transform: translateX(-50%);
+    margin: 0;
+    padding: 6px 12px;
+    color: #726d85;
+    font-size: 1.6rem;
+    font-weight: 600;
+    width: 100px;
+    text-align: center;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 999px;
+    background: #111;
+    color: #fff;
+    font-size: 20px;
+    line-height: 34px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.slider-btn:hover { opacity: 1; }
+.slider-btn:focus { outline: 2px solid #6aa9ff; outline-offset: 2px; }
+
+.slider .prev { left: 6px; }
+.slider .next { right: 6px; }
+
+/* Footer */
+footer {
+    position: relative;
+    background: linear-gradient(135deg, #3f3a55 0%, #2d2840 100%);
+    color: white;
+    padding: 50px 50px 30px;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}
+
+#footer-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    border: 2px outset #d1d1d1;
+    border-radius: 65px;
+    justify-content: space-evenly;
+    width: 50%;
+}
+
+.footer-section {
+    flex: 1;
+}
+
+.footer-section h3 {
+    color: #ffffff;
+    font-size: 1rem;
+    margin: 0 0;
+}
+
+.footer-section p {
+    margin: 10px 0;
+    line-height: 1.6;
+    color: #e0e0e0;
+    font-size: 0.95rem;
+}
+
+.footer-section strong {
+    color: #ffffff;
+}
+
+.footer-section a {
+    color: #66b3ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.footer-logo {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#footer-container img {
+    height: 45px;
+}
+
+@media (max-width: 768px) {
+    footer {
+        padding: 30px 20px;
+    }
+
+    #footer-container {
+        flex-direction: row;
+        gap: 20px;
+        border: none;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .footer-section {
+        text-align: center;
+    }
+
+    .footer-logo {
+        order: 0;
+    }
+}
+
+h1 {
+    font-size: 1.2rem;
+    text-shadow: 0px 0px 10px #ffffff66, 0 1px 10px #ffffff73, 1px 0 10px #ffffff6b, 0 -1px 10px #ffffff5e;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin: 0;
+}
+
+h3 {
+    font-size: 1.8rem;
+    margin-left: 1rem;
+}
+
+.menu-utilisateur {
+    position: relative;
+}
+
+.bouton-utilisateur {
+    background-color: #0a57a8;
+    padding: 8px 16px;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    transition: background 0.2s ease;
+}
+
+.bouton-utilisateur:hover {
+    background-color: #0052cc;
+}
+
+.menu-deroulant {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    min-width: 200px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.menu-deroulant a,
+.menu-deroulant button {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    text-align: left;
+    color: #3f3a55;
+    text-decoration: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.95rem;
+    transition: background 0.2s ease;
+}
+
+.menu-deroulant a:hover,
+.menu-deroulant button:hover {
+    background: #f5f5f5;
+}
+
+.menu-deroulant button {
+    border-top: 1px solid #e0e0e0;
+    color: #dc3545;
+    font-weight: 500;
+}
+
+/* ========== BARRE ADMINISTRATION ========== */
+.barre-admin {
+    display: none;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 15px 20px;
+    margin-top: 70px;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    position: relative;
+    z-index: 90;
+}
+
+.barre-admin[style*="display: flex"] {
+    display: flex;
+}
+
+.contenu-barre-admin {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.contenu-barre-admin h3 {
+    margin: 0;
+    color: white;
+    font-size: 18px;
+    flex: 0 0 auto;
+}
+
+.bouton-admin {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.bouton-admin.bouton-ajouter {
+    background: #4CAF50;
+}
+
+.bouton-admin.bouton-ajouter:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+}
+
+/* ========== MODALS ========== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+}
+
+.modal-contenu {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s ease;
+}
+
+.modal-contenu.modal-petit {
+    max-width: 400px;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-contenu h2 {
+    margin-top: 0;
+    color: #333;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 15px;
+}
+
+.modal-contenu form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-contenu label {
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.modal-contenu input,
+.modal-contenu textarea,
+.modal-contenu select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.modal-contenu input:focus,
+.modal-contenu textarea:focus,
+.modal-contenu select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.fermer-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.fermer-modal:hover {
+    color: #000;
+}
+
+.boutons-modal {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.bouton-primaire,
+.bouton-secondaire {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 14px;
+}
+
+.bouton-primaire {
+    background: #667eea;
+    color: white;
+}
+
+.bouton-primaire:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+}
+
+.bouton-secondaire {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.bouton-secondaire:hover {
+    background: #d0d0d0;
+}
+
+/* ========== BOUTONS ADMIN SUR PRODUITS ========== */
+.boutons-admin-produit {
+    display: flex;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    gap: 8px;
+    z-index: 10;
+}
+
+.carte-produit {
+    position: relative;
+}
+
+.bouton-admin-edit,
+.bouton-admin-delete {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+    font-weight: 600;
+}
+
+.bouton-admin-edit {
+    background: #FFC107;
+    color: #333;
+}
+
+.bouton-admin-edit:hover {
+    background: #ffb300;
+    transform: scale(1.05);
+}
+
+.bouton-admin-delete {
+    background: #f44336;
+    color: white;
+}
+
+.bouton-admin-delete:hover {
+    background: #da190b;
+    transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .categorie { width: 220px; height: 150px; }
+}

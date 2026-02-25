@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Lend&Share</title>
+    <link rel="stylesheet" href="../assets/common.css">
+    <link rel="stylesheet" href="../assets/auth.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <!-- Le contenu sera généré par header.js -->
+    </header>
+
+    <main class="page-authentification">
+        <div class="conteneur-formulaire-authentification">
+            <h2>Connexion</h2>
+            <p class="sous-titre-formulaire">Connectez-vous pour gérer vos réservations</p>
+
+            <!-- Zone pour afficher les messages d'erreur ou de succès -->
+            <div id="zone-message" class="message-cache"></div>
+
+            <form id="formulaire-connexion" novalidate>
+                <div class="groupe-champ">
+                    <label for="champ-email">Email</label>
+                    <input 
+                        type="email" 
+                        id="champ-email" 
+                        name="email_utilisateur"
+                        required
+                        placeholder="votre.email@exemple.fr"
+                        autofocus
+                    >
+                    <span class="message-erreur-champ" id="erreur-email"></span>
+                </div>
+
+                <div class="groupe-champ">
+                    <label for="champ-mot-de-passe">Mot de passe</label>
+                    <input 
+                        type="password" 
+                        id="champ-mot-de-passe" 
+                        name="mot_de_passe"
+                        required
+                        placeholder="Votre mot de passe"
+                    >
+                    <span class="message-erreur-champ" id="erreur-mot-de-passe"></span>
+                </div>
+
+                <button type="submit" id="bouton-connexion" class="bouton-principal">
+                    Se connecter
+                </button>
+            </form>
+
+            <p class="lien-alternatif">
+                Vous n'avez pas de compte ? 
+                <a href="inscription.html">Inscrivez-vous</a>
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <section id="footer-container">
+            <section>
+                <p>mentions legales</p>
+            </section>
+            <section>
+                <img src="../assets/footer_logo.png" alt="Logo bas de page" />
+            </section>
+            <section>
+                <p>contact</p>
+            </section>
+        </section>
+    </footer>
+
+    <script src="../assets/js/header_en.js"></script>
+    <script src="../assets/js/login.js"></script>
+</body>
+</html>

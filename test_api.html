@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API - Lend&Share</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .test-section {
+            margin-bottom: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+
+        .test-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .test-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            transition: background 0.3s;
+        }
+
+        .test-button:hover {
+            background: #5568d3;
+        }
+
+        .test-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .result.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .result.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .result.info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+
+        .login-status {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .login-status.connected {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .login-status.disconnected {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        input, select {
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Test API - Lend&Share Admin</h1>
+
+        <div id="login-status" class="login-status disconnected">
+            Non connecté
+        </div>
+
+        <!-- Authentification -->
+        <div class="test-section">
+            <h2>1. Authentification</h2>
+            <button class="test-button" onclick="testLogin()">Se connecter (admin)</button>
+            <button class="test-button" onclick="testVerifySession()">Vérifier session</button>
+            <button class="test-button" onclick="testLogout()">Se déconnecter</button>
+            <div id="result-auth" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Produits - Lecture -->
+        <div class="test-section">
+            <h2>2. Produits - Lecture (GET)</h2>
+            <button class="test-button" onclick="testGetAllProducts()">Lister tous les produits</button>
+            <button class="test-button" onclick="testGetProductById()">Récupérer un produit (ID 1)</button>
+            <button class="test-button" onclick="testGetFeaturedProducts()">Produits en vedette</button>
+            <div id="result-get" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Produits - Création -->
+        <div class="test-section">
+            <h2>3. Produits - Création (POST)</h2>
+            <input type="text" id="new-product-name" placeholder="Nom du produit" value="Produit Test API">
+            <select id="new-product-category">
+                <option value="">Chargement...</option>
+            </select>
+            <button class="test-button" onclick="testCreateProduct()">Créer un produit</button>
+            <div id="result-create" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Produits - Modification -->
+        <div class="test-section">
+            <h2>4. Produits - Modification (PUT)</h2>
+            <input type="number" id="update-product-id" placeholder="ID du produit" value="">
+            <input type="text" id="update-product-name" placeholder="Nouveau nom" value="Produit Modifié">
+            <button class="test-button" onclick="testUpdateProduct()">Modifier le produit</button>
+            <div id="result-update" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Produits - Suppression -->
+        <div class="test-section">
+            <h2>5. Produits - Suppression (DELETE)</h2>
+            <input type="number" id="delete-product-id" placeholder="ID du produit" value="">
+            <button class="test-button" onclick="testDeleteProduct()">Supprimer le produit</button>
+            <div id="result-delete" class="result" style="display:none;"></div>
+        </div>
+
+        <!-- Statistiques -->
+        <div class="test-section">
+            <h2>6. Statistiques (Admin)</h2>
+            <button class="test-button" onclick="testGetStatistics()">Récupérer les statistiques</button>
+            <div id="result-stats" class="result" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script>
+        let lastCreatedProductId = null;
+
+        // Charger les catégories au chargement de la page
+        async function loadCategories() {
+            try {
+                const response = await fetch('backend/api/api_categories.php');
+                const data = await response.json();
+
+                const select = document.getElementById('new-product-category');
+                select.innerHTML = '';
+
+                if (data.succes && data.donnees) {
+                    data.donnees.forEach(cat => {
+                        const option = document.createElement('option');
+                        option.value = cat.id_categorie;
+                        option.textContent = cat.nom_categorie;
+                        select.appendChild(option);
+                    });
+                }
+            } catch (error) {
+                console.error('Erreur chargement catégories:', error);
+            }
+        }
+
+        // Mettre à jour le statut de connexion
+        function updateLoginStatus(connected, user = null) {
+            const statusDiv = document.getElementById('login-status');
+            if (connected && user) {
+                statusDiv.className = 'login-status connected';
+                statusDiv.textContent = `Connecté : ${user.email_utilisateur} (${user.role_utilisateur})`;
+            } else {
+                statusDiv.className = 'login-status disconnected';
+                statusDiv.textContent = 'Non connecté';
+            }
+        }
+
+        // Afficher un résultat
+        function showResult(elementId, data, isError = false) {
+            const resultDiv = document.getElementById(elementId);
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result ' + (isError ? 'error' : 'success');
+            resultDiv.textContent = JSON.stringify(data, null, 2);
+        }
+
+        // 1. Tests d'authentification
+        async function testLogin() {
+            try {
+                const response = await fetch('backend/api/api_connexion.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: 'admin@lendshare.fr',
+                        mot_de_passe: 'Admin123!'
+                    })
+                });
+                const data = await response.json();
+                showResult('result-auth', data, !data.succes);
+
+                if (data.succes) {
+                    updateLoginStatus(true, data.utilisateur);
+                }
+            } catch (error) {
+                showResult('result-auth', { error: error.message }, true);
+            }
+        }
+
+        async function testVerifySession() {
+            try {
+                const response = await fetch('backend/api/api_verifier_session.php');
+                const data = await response.json();
+                showResult('result-auth', data);
+
+                if (data.connecte) {
+                    updateLoginStatus(true, data.utilisateur);
+                } else {
+                    updateLoginStatus(false);
+                }
+            } catch (error) {
+                showResult('result-auth', { error: error.message }, true);
+            }
+        }
+
+        async function testLogout() {
+            try {
+                const response = await fetch('backend/api/api_deconnexion.php');
+                const data = await response.json();
+                showResult('result-auth', data);
+                updateLoginStatus(false);
+            } catch (error) {
+                showResult('result-auth', { error: error.message }, true);
+            }
+        }
+
+        // 2. Tests GET
+        async function testGetAllProducts() {
+            try {
+                const response = await fetch('backend/api/api_produits.php');
+                const data = await response.json();
+                showResult('result-get', data, !data.success);
+            } catch (error) {
+                showResult('result-get', { error: error.message }, true);
+            }
+        }
+
+        async function testGetProductById() {
+            try {
+                const response = await fetch('backend/api/api_produits.php?id=1');
+                const data = await response.json();
+                showResult('result-get', data, !data.success);
+            } catch (error) {
+                showResult('result-get', { error: error.message }, true);
+            }
+        }
+
+        async function testGetFeaturedProducts() {
+            try {
+                const response = await fetch('backend/api/api_produits.php?vedettes=1');
+                const data = await response.json();
+                showResult('result-get', data, !data.success);
+            } catch (error) {
+                showResult('result-get', { error: error.message }, true);
+            }
+        }
+
+        // 3. Test POST (Création)
+        async function testCreateProduct() {
+            const name = document.getElementById('new-product-name').value;
+            const category = document.getElementById('new-product-category').value;
+
+            if (!name || !category) {
+                showResult('result-create', { error: 'Nom et catégorie requis' }, true);
+                return;
+            }
+
+            try {
+                const response = await fetch('backend/api/api_produits.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        nom_produit: name,
+                        description_produit: 'Produit créé via le test API',
+                        id_categorie: parseInt(category),
+                        quantite_totale: 3,
+                        quantite_disponible: 3
+                    })
+                });
+                const data = await response.json();
+                showResult('result-create', data, !data.success);
+
+                if (data.success && data.produit) {
+                    lastCreatedProductId = data.produit.id_produit;
+                    document.getElementById('update-product-id').value = lastCreatedProductId;
+                    document.getElementById('delete-product-id').value = lastCreatedProductId;
+                }
+            } catch (error) {
+                showResult('result-create', { error: error.message }, true);
+            }
+        }
+
+        // 4. Test PUT (Modification)
+        async function testUpdateProduct() {
+            const id = document.getElementById('update-product-id').value;
+            const name = document.getElementById('update-product-name').value;
+
+            if (!id) {
+                showResult('result-update', { error: 'ID du produit requis (créez d\'abord un produit)' }, true);
+                return;
+            }
+
+            try {
+                const response = await fetch('backend/api/api_produits.php', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id_produit: parseInt(id),
+                        nom_produit: name,
+                        quantite_disponible: 5
+                    })
+                });
+                const data = await response.json();
+                showResult('result-update', data, !data.success);
+            } catch (error) {
+                showResult('result-update', { error: error.message }, true);
+            }
+        }
+
+        // 5. Test DELETE (Suppression)
+        async function testDeleteProduct() {
+            const id = document.getElementById('delete-product-id').value;
+
+            if (!id) {
+                showResult('result-delete', { error: 'ID du produit requis' }, true);
+                return;
+            }
+
+            if (!confirm(`Confirmer la suppression du produit ID ${id} ?`)) {
+                return;
+            }
+
+            try {
+                const response = await fetch('backend/api/api_produits.php', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id_produit: parseInt(id)
+                    })
+                });
+                const data = await response.json();
+                showResult('result-delete', data, !data.success);
+
+                if (data.success) {
+                    document.getElementById('update-product-id').value = '';
+                    document.getElementById('delete-product-id').value = '';
+                }
+            } catch (error) {
+                showResult('result-delete', { error: error.message }, true);
+            }
+        }
+
+        // 6. Test Statistiques
+        async function testGetStatistics() {
+            try {
+                const response = await fetch('backend/api/api_statistiques.php');
+                const data = await response.json();
+                showResult('result-stats', data, !data.success);
+            } catch (error) {
+                showResult('result-stats', { error: error.message }, true);
+            }
+        }
+
+        // Initialisation
+        window.addEventListener('DOMContentLoaded', () => {
+            loadCategories();
+            testVerifySession();
+        });
+    </script>
+</body>
+</html>

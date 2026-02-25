@@ -1,0 +1,35 @@
+# Configuration pour servir les fichiers HTML et PHP
+DirectoryIndex index.php index.html index.htm
+
+# Permettre l'accès aux fichiers HTML
+<Files "*.html">
+    Order allow,deny
+    Allow from all
+</Files>
+
+# Permettre l'accès aux fichiers CSS et JS
+<Files "*.css">
+    Order allow,deny
+    Allow from all
+</Files>
+
+<Files "*.js">
+    Order allow,deny
+    Allow from all
+</Files>
+
+# Permettre l'accès aux images
+<Files "*.jpg">
+    Order allow,deny
+    Allow from all
+</Files>
+
+<Files "*.png">
+    Order allow,deny
+    Allow from all
+</Files>
+
+<Files "*.gif">
+    Order allow,deny
+    Allow from all
+</Files>

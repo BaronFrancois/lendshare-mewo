@@ -1,0 +1,35 @@
+# Logs
+logs/*.log
+logs/*.txt
+
+# Fichiers uploadés (sauf exemples)
+uploads/products/*
+uploads/categories/*
+!uploads/products/.gitkeep
+!uploads/categories/.gitkeep
+
+# Cache
+cache/*
+!cache/.gitkeep
+
+# Backups
+backups/*
+!backups/.gitkeep
+
+# Fichiers de configuration sensibles
+backend/config/config_production.php
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+.claude/
+
+# PHP
+vendor/
+composer.lock

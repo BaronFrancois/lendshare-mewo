@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - Lend&Share</title>
+    <link rel="stylesheet" href="../assets/common.css">
+    <link rel="stylesheet" href="../assets/auth.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+<body>
+    <header>
+        <!-- Le contenu sera généré par header.js -->
+    </header>
+
+    <main class="page-authentification">
+        <div class="conteneur-formulaire-authentification">
+            <h2>Créer un compte</h2>
+            <p class="sous-titre-formulaire">Inscrivez-vous pour réserver du matériel</p>
+
+            <!-- Zone pour afficher les messages d'erreur ou de succès -->
+            <div id="zone-message" class="message-cache"></div>
+
+            <form id="formulaire-inscription" novalidate>
+                <div class="groupe-champ">
+                    <label for="champ-prenom">Prénom *</label>
+                    <input 
+                        type="text" 
+                        id="champ-prenom" 
+                        name="prenom_utilisateur"
+                        required
+                        minlength="2"
+                        maxlength="50"
+                        placeholder="Entrez votre prénom"
+                    >
+                    <span class="message-erreur-champ" id="erreur-prenom"></span>
+                </div>
+
+                <div class="groupe-champ">
+                    <label for="champ-nom">Nom *</label>
+                    <input 
+                        type="text" 
+                        id="champ-nom" 
+                        name="nom_utilisateur"
+                        required
+                        minlength="2"
+                        maxlength="50"
+                        placeholder="Entrez votre nom"
+                    >
+                    <span class="message-erreur-champ" id="erreur-nom"></span>
+                </div>
+
+                <div class="groupe-champ">
+                    <label for="champ-email">Email *</label>
+                    <input 
+                        type="email" 
+                        id="champ-email" 
+                        name="email_utilisateur"
+                        required
+                        placeholder="votre.email@exemple.fr"
+                    >
+                    <span class="message-erreur-champ" id="erreur-email"></span>
+                </div>
+
+                <div class="groupe-champ">
+                    <label for="champ-mot-de-passe">Mot de passe *</label>
+                    <input 
+                        type="password" 
+                        id="champ-mot-de-passe" 
+                        name="mot_de_passe"
+                        required
+                        minlength="8"
+                        placeholder="Minimum 8 caractères"
+                    >
+                    <span class="message-erreur-champ" id="erreur-mot-de-passe"></span>
+                    <div class="aide-mot-de-passe">
+                        <small>Le mot de passe doit contenir :</small>
+                        <ul>
+                            <li id="validation-longueur">Au moins 8 caractères</li>
+                            <li id="validation-majuscule">Une lettre majuscule</li>
+                            <li id="validation-minuscule">Une lettre minuscule</li>
+                            <li id="validation-chiffre">Un chiffre</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="groupe-champ">
+                    <label for="champ-confirmation-mot-de-passe">Confirmer le mot de passe *</label>
+                    <input 
+                        type="password" 
+                        id="champ-confirmation-mot-de-passe" 
+                        name="confirmation_mot_de_passe"
+                        required
+                        minlength="8"
+                        placeholder="Répétez le mot de passe"
+                    >
+                    <span class="message-erreur-champ" id="erreur-confirmation"></span>
+                </div>
+
+                <button type="submit" id="bouton-inscription" class="bouton-principal">
+                    S'inscrire
+                </button>
+            </form>
+
+            <p class="lien-alternatif">
+                Vous avez déjà un compte ? 
+                <a href="connexion.html">Connectez-vous</a>
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <section id="footer-container">
+            <section>
+                <p>mentions legales</p>
+            </section>
+            <section>
+                <img src="../assets/footer_logo.png" alt="Logo bas de page" />
+            </section>
+            <section>
+                <p>contact</p>
+            </section>
+        </section>
+    </footer>
+
+    <script src="../assets/js/header_en.js"></script>
+    <script src="../assets/js/register.js"></script>
+</body>
+</html>
