@@ -1,27 +1,73 @@
 [build]
   publish = "."
+  functions = "netlify/functions"
 
-# Proxy toutes les requêtes backend vers Railway (PHP API + sessions)
+[build.environment]
+  NODE_VERSION = "20"
+
+# ── Redirections des APIs PHP vers les Netlify Functions ──────────────────────
+
 [[redirects]]
-  from = "/backend/*"
-  to = "https://web-production-44e7e.up.railway.app/backend/:splat"
+  from = "/backend/api/api_produits.php"
+  to = "/.netlify/functions/api_produits"
   status = 200
   force = true
 
-# Proxy les images uploadées par les admins (stockées sur Railway)
 [[redirects]]
-  from = "/uploads/*"
-  to = "https://web-production-44e7e.up.railway.app/uploads/:splat"
+  from = "/backend/api/api_categories.php"
+  to = "/.netlify/functions/api_categories"
   status = 200
   force = true
 
-# Redirection index.php → index.html
+[[redirects]]
+  from = "/backend/api/api_connexion.php"
+  to = "/.netlify/functions/api_connexion"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/backend/api/api_deconnexion.php"
+  to = "/.netlify/functions/api_deconnexion"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/backend/api/api_inscription.php"
+  to = "/.netlify/functions/api_inscription"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/backend/api/api_verifier_session.php"
+  to = "/.netlify/functions/api_verifier_session"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/backend/api/api_reservations.php"
+  to = "/.netlify/functions/api_reservations"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/backend/api/api_update_quantites.php"
+  to = "/.netlify/functions/api_update_quantites"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/backend/api/api_upload_image.php"
+  to = "/.netlify/functions/api_upload_image"
+  status = 200
+  force = true
+
+# ── Redirections des pages .php vers .html ────────────────────────────────────
+
 [[redirects]]
   from = "/index.php"
   to = "/index.html"
   status = 301
 
-# Redirections des anciennes URLs .php vers les versions .html statiques
 [[redirects]]
   from = "/pages/categories.php"
   to = "/pages/categories.html"

@@ -2,7 +2,7 @@
 Service de location de bien de mairie à particulier.
 
 #### 1 Lancer le site :
-https://web-production-44e7e.up.railway.app/index.html
+https://unique-druid-a14a84.netlify.app/
 
 #### 2 Se connecter en tant que particulier
 Mail: test@test.fr
