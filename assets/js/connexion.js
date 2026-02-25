@@ -133,7 +133,7 @@ async function envoyerConnexionVersAPI(donneesConnexion) {
             setTimeout(function() {
                 // Rediriger vers la page des catégories si administrateur, sinon vers l'accueil
                 if (donneesReponse.utilisateur && donneesReponse.utilisateur.role_utilisateur === 'administrateur') {
-                    window.location.href = 'categories.php';
+                    window.location.href = 'categories.html';
                 } else {
                     window.location.href = '../index.html';
                 }

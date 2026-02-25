@@ -1,0 +1,38 @@
+[build]
+  publish = "."
+
+# Proxy toutes les requêtes backend vers Railway (PHP API + sessions)
+[[redirects]]
+  from = "/backend/*"
+  to = "https://web-production-44e7e.up.railway.app/backend/:splat"
+  status = 200
+  force = true
+
+# Proxy les images uploadées par les admins (stockées sur Railway)
+[[redirects]]
+  from = "/uploads/*"
+  to = "https://web-production-44e7e.up.railway.app/uploads/:splat"
+  status = 200
+  force = true
+
+# Redirection index.php → index.html
+[[redirects]]
+  from = "/index.php"
+  to = "/index.html"
+  status = 301
+
+# Redirections des anciennes URLs .php vers les versions .html statiques
+[[redirects]]
+  from = "/pages/categories.php"
+  to = "/pages/categories.html"
+  status = 301
+
+[[redirects]]
+  from = "/pages/admin/gestion_produits.php"
+  to = "/pages/admin/gestion_produits.html"
+  status = 301
+
+[[redirects]]
+  from = "/pages/admin/gestion_reservations.php"
+  to = "/pages/admin/gestion_reservations.html"
+  status = 301

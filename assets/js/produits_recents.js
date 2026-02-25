@@ -53,7 +53,7 @@ function afficherProduitsRecents() {
         const image_url = produit.image_url_produit || '../assets/images/default-product.png';
         
         html += `
-            <a href="pages/categories.php?produit=${produit.id_produit}" class="tile-categorie tile-produit-recent">
+            <a href="pages/categories.html?produit=${produit.id_produit}" class="tile-categorie tile-produit-recent">
                 <img src="${image_url}" alt="${escapeHtml(produit.nom_produit)}" onerror="this.src='../assets/images/default-product.png'">
                 <h4>${escapeHtml(produit.nom_produit)}</h4>
             </a>

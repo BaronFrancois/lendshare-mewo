@@ -1,0 +1,18 @@
+# Fichiers PHP (non exécutables sur Netlify, proxifiés vers Railway)
+**/*.php
+
+# Base de données SQLite (hébergée sur Railway)
+database/
+
+# Logs applicatifs
+logs/
+
+# Documents de travail internes
+travail/
+
+# Fichiers de configuration Railway
+Procfile
+runtime.txt
+
+# Configuration serveur Apache (non utilisée par Netlify)
+.htaccess

@@ -36,7 +36,7 @@ function determinerPageActuelle() {
         return 'connexion';
     } else if (filename === 'inscription.html') {
         return 'inscription';
-    } else if (filename === 'categories.php' || filename.includes('category')) {
+    } else if (filename === 'categories.html' || filename === 'categories.php' || filename.includes('category')) {
         return 'categories';
     } else if (path.includes('/pages/')) {
         return 'pages';
@@ -62,7 +62,7 @@ function creerHeaderHTML(pageActuelle, estConnecte = false) {
 
     switch (pageActuelle) {
         case 'accueil':
-            headerHTML += `<a href="pages/categories.php" class="bouton-catalogue"><span class="texte-complet">Accès au Catalogue Complet</span><span class="texte-court">Catalogue</span></a>`;
+            headerHTML += `<a href="pages/categories.html" class="bouton-catalogue"><span class="texte-complet">Accès au Catalogue Complet</span><span class="texte-court">Catalogue</span></a>`;
             break;
 
         case 'categories':
@@ -73,14 +73,14 @@ function creerHeaderHTML(pageActuelle, estConnecte = false) {
         case 'connexion':
             headerHTML += `
                 <a href="${prefixe}index.html" class="bouton-catalogue">Accueil</a>
-                <a href="categories.php" class="bouton-catalogue">Catalogue</a>
+                <a href="categories.html" class="bouton-catalogue">Catalogue</a>
             `;
             break;
 
         case 'inscription':
             headerHTML += `
                 <a href="${prefixe}index.html" class="bouton-catalogue">Accueil</a>
-                <a href="categories.php" class="bouton-catalogue">Catalogue</a>
+                <a href="categories.html" class="bouton-catalogue">Catalogue</a>
             `;
             break;
     }

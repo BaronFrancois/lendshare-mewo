@@ -62,8 +62,8 @@ function mettreAJourInterfaceUtilisateurConnecte(utilisateur, bouton) {
         const lien_admin = document.createElement('a');
         // Déterminer le chemin relatif selon la page actuelle
         const chemin_admin = window.location.pathname.includes('/admin/')
-            ? 'gestion_produits.php'
-            : 'admin/gestion_produits.php';
+            ? 'gestion_produits.html'
+            : 'admin/gestion_produits.html';
         lien_admin.href = chemin_admin;
         lien_admin.textContent = '⚡ Administration';
         menu_deroulant.appendChild(lien_admin);
